@@ -6,8 +6,6 @@ import '../style.scss'
 const MusicChart = (props:any) => {
     const [data, setData] = useState<any[]>([]);
     const [search, setSearch] = useState("");
-    const [count, setCount] = useState(0)
-    const Navigate = useNavigate();
 
     useEffect(() => {
       axios
@@ -52,6 +50,7 @@ const MusicChart = (props:any) => {
         // Navigate(`/Detail/${data.id.attributes["im:id"]}`);
     }
 
+    
     return(
         <div className="chart">
             <div className="search">
@@ -69,7 +68,7 @@ const MusicChart = (props:any) => {
             <div className="musics">
                 <div className="line"/>
                 <div className="title">
-                    <h6>순위</h6>
+                    <h6>NO.</h6>
                     <h6>곡-아티스트</h6>
                 </div>
                 
@@ -78,13 +77,13 @@ const MusicChart = (props:any) => {
                     return music
                 } else if(music.title.label.toLowerCase().includes(search.toLowerCase())){
                     return music
-                }}).map((music:any) => {
+                }}).map((music:any,num) => {
                     return(
                     <>
                         <Link to={`/detail/${music.id.attributes["im:id"]}`} className="link">
                             <div onClick={goToDetail}>
                                 <div className="musicInfo">
-                                    <div>{count}</div>
+                                    <div>{num+1}</div>
                                     <img className="img" src={music["im:image"][0].label} alt=""></img>
                                     <div className="name">{music.title.label}</div>
                                 </div>
