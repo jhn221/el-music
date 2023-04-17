@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../style.scss'
 
-const Chat = (props:any) => {
+const chart = (props:any) => {
     const [data, setData] = useState<any[]>([]);
     const [search, setSearch] = useState("");
     const [count, setCount] = useState(0)
@@ -53,7 +53,7 @@ const Chat = (props:any) => {
     }
 
     return(
-        <div className="chat">
+        <div className="chart">
             <div className="search">
                 <h3>ALBEM TOP 100</h3>
                 <input
@@ -99,4 +99,4 @@ const Chat = (props:any) => {
     )
 }
 
-export default Chat;
+export default chart;
