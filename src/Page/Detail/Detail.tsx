@@ -11,9 +11,8 @@ const Detail = (data:any) => {
     ))
     return (
         <div className="detail">
-            
-            <div>{DetailData[0]["im:name"].label}</div>
-            <div className="정보들">
+            <div className="albemTitle">{DetailData[0]["im:name"].label}</div>
+            <div className="detailInfo">
                 <img src={DetailData[0]["im:image"][0].label}></img>
                 <div>
                     <div>artist : {DetailData[0]["im:artist"].label}</div>
@@ -24,9 +23,9 @@ const Detail = (data:any) => {
                     <div>item count : {DetailData[0]["im:itemCount"].label}</div>
                     {/* <a href="{DetailData[0].link.href}">더보기</a> */}
                 </div>
-                <div>{DetailData[0].rights.label}</div>
                 
             </div>
+                <div>{DetailData[0].rights.label}</div>
 
         </div>
     )
