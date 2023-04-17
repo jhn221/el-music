@@ -9,13 +9,23 @@ const Detail = (data:any) => {
     const DetailData = data.data.filter((data:any)=> (
         data.id.attributes["im:id"] === musicId
     ))
-    console.log(DetailData)
     return (
         <div className="detail">
             
-            <div>{DetailData[0].title.label}</div>
+            <div>{DetailData[0]["im:name"].label}</div>
             <div className="정보들">
-                <div></div>
+                <img src={DetailData[0]["im:image"][0].label}></img>
+                <div>
+                    <div>artist : {DetailData[0]["im:artist"].label}</div>
+                    <div>category : {DetailData[0].category.attributes.label}</div>
+
+                    <div>price : {DetailData[0]["im:price"].label}</div>
+                    <div>releaseDate : {DetailData[0]["im:releaseDate"].label}</div>
+                    <div>item count : {DetailData[0]["im:itemCount"].label}</div>
+                    {/* <a href="{DetailData[0].link.href}">더보기</a> */}
+                </div>
+                <div>{DetailData[0].rights.label}</div>
+                
             </div>
 
         </div>

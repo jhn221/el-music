@@ -17,7 +17,9 @@ const Chat = (props:any) => {
         .catch((err) => {
             console.log(err)
         })  
-    })
+    },[])
+
+
     const goToDetail = () => {
         props.getMusicDetail(data);
         // Navigate(`/Detail/${data.id.attributes["im:id"]}`);
@@ -29,26 +31,31 @@ const Chat = (props:any) => {
             <div className="search">
                 <input
                     placeholder="찾으시는 음악 이름을 입력하세요"
-                    
+                   
                 />
                 <button>검색</button>
             </div>
             <div className="sort">
-                <button>오름차순</button>
+                <button >오름차순</button>
                 <button>내림차순</button>
             </div>
             <div className="musics">
             <div>순위</div>
-            {data.map((music:any) => {
+            {data.filter((music) => {
+                if(search === ""){
+                return music
+            } else if(music.title.label.toLowerCase().includes(search.toLowerCase())){
+                return music
+            }}).map((music:any) => {
                 return(
-                    <div onClick={goToDetail}>
                     <Link to={`/detail/${music.id.attributes["im:id"]}`}>
+                        <div onClick={goToDetail}>
                         <div className="musicInfo">
                             <img className="img" src={music["im:image"][0].label} alt=""></img>
                             <div className="name">{music.title.label}</div>
                         </div>
+                </div>
                     </Link>   
-                    </div>
                 )
             })}
             </div>
