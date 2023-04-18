@@ -1,5 +1,5 @@
 .chart{
-    width: 100vw;
+    width: 96vw;
     height: 100%;
     
 }
@@ -107,18 +107,14 @@
     width: 100%;
     height: 100vh;
     h3 {
-        width: 30%;
+        width: 80%;
         margin: 20px;
         a{
             text-decoration-line : none;
             text-decoration : none;
             color: black; 
             cursor: pointer;
-        }
-        
-    }
-    @media (max-width:700px) {
-        
+        } 
     }
 }
 .albemTitle{
@@ -153,8 +149,6 @@
         @media (max-width:700px) {
             width: 100%;
         }
-        
-
     }
 }
 .detailKey{
@@ -180,4 +174,8 @@
     @media (max-width:700px) {
         align-items: flex-start;
     }
+}
+.rigths{
+    display: flex;
+    justify-content: center;
 }
