@@ -6,17 +6,12 @@ const Detail = (propsdata:any) => {
     const { musicId } = useParams();
     const [data, setData] = useState();
     
-    console.log(musicId)
-    console.log(data)
-    
     useEffect(() => {
         const savedData = changeData();
-        console.log(savedData)
         if (savedData) {
             setData(JSON.parse(savedData));
         }
     }, []);
-    console.log(data)
 
     const changeData = () => {
          const data = localStorage.getItem('DetailData');
@@ -57,7 +52,6 @@ const Detail = (propsdata:any) => {
                         <span>releaseDate : </span>
                         <span>item count : </span>
                         <span>Detail : </span>
-                        {/* <a href="{DetailData[0].link.href}">더보기</a> */}
                     </div>
                     <div className="detailValue">
                         <span> {DetailData[0]["im:artist"].label}</span>
@@ -71,7 +65,7 @@ const Detail = (propsdata:any) => {
                 </div>
                 
             </div>
-                {/* <div>{DetailData[0].rights.label}</div> */}
+                <div className="rigths">{DetailData[0].rights.label}</div>
 
         </div>
     )
