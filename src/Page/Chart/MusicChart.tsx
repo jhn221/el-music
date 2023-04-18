@@ -80,7 +80,7 @@ const MusicChart = (props:any) => {
             <div className="search">
                 <h3>ALBEM TOP 100</h3>
                 <input
-                    placeholder="찾으시는 음악 이름을 입력하세요"
+                    placeholder="앨범 이름으로 검색해보세요"
                     onChange={searchMusic}
                     onKeyPress={onKeyPressEnter}
                 />

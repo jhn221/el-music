@@ -26,7 +26,23 @@ const Detail = (propsdata:any) => {
     const DetailData = propsdata.data.filter((data:any)=> (
         data.id.attributes["im:id"] === musicId
     ))
-   
+    
+    //새로고침 확인 코드
+    const preventClose = (e:BeforeUnloadEvent) => {
+        e.preventDefault();
+        e.returnValue = ""; // chrome 환경에서 설정이 필요해서 넣은 코드
+    }
+
+    useEffect(() => {
+        (() => {
+            window.addEventListener("beforeunload", preventClose);    
+        })();
+    
+        return () => {
+            window.removeEventListener("beforeunload", preventClose);
+        };
+    },[]);
+
     return (
         <div className="detail">
             <h3><Link to='/'>ALBEM TOP 100</Link></h3>
