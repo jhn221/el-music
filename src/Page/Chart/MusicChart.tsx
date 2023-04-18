@@ -5,8 +5,8 @@ import Loading from "../../Loading/Loading";
 import '../style.scss'
 
 const MusicChart = (props:any) => {
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+    // const [loading, setLoading] = useState(false)
+    // const [error, setError] = useState(null)
     const [data, setData] = useState<any[]>([]);
     const [search, setSearch] = useState("");
     const [onDownKeyClickPress, setOnDownKeyClickPress] = useState<boolean>(false)
@@ -17,23 +17,21 @@ const MusicChart = (props:any) => {
         .get ('https://itunes.apple.com/us/rss/topalbums/limit=100/json',)
         .then((res) => {
             setData(res.data.feed.entry)
-            // localStorage.setItem("DetailData", JSON.stringify(res.data.feed.entry))
+            localStorage.setItem("DetailData", JSON.stringify(res.data.feed.entry))
         })
         .catch((err) => {
             console.log(err)
         })  
     },[])
-    if (loading) return (
-        <Loading/>
-      )
-      if (error) return (
-        <div>에러 발생..{error}</div>
-      )
-    console.log(data)
+    // if (loading) return (
+    //     <Loading/>
+    //   )
+    //   if (error) return (
+    //     <div>에러 발생..{error}</div>
+    //   )
 
     // 검색
     const searchMusic = (e:any) => {
-        // console.log(e.target.value)
       setSearch(e.target.value)
     }
 
