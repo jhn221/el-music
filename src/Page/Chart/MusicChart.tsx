@@ -1,11 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../Loading/Loading";
 import '../style.scss'
 
 const MusicChart = (props:any) => {
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
     const [data, setData] = useState<any[]>([]);
     const [search, setSearch] = useState("");
+    const [onDownKeyClickPress, setOnDownKeyClickPress] = useState<boolean>(false)
+    const [onUpKeyClickPress, setOnUpKeyClickPress] = useState<boolean>(false)
 
     useEffect(() => {
       axios
@@ -18,17 +23,31 @@ const MusicChart = (props:any) => {
             console.log(err)
         })  
     },[])
+    if (loading) return (
+        <Loading/>
+      )
+      if (error) return (
+        <div>에러 발생..{error}</div>
+      )
     console.log(data)
 
     // 검색
     const searchMusic = (e:any) => {
+        // console.log(e.target.value)
       setSearch(e.target.value)
     }
 
     const submitSearch = (e:any) => {
-        setSearch(e.target.value)
+        if (search === "") {
+            alert("검색어를 입력하세요");
+          }
     }
 
+    const onKeyPressEnter = (e:any) => {
+        if (e.key === "Enter") {
+            submitSearch(e);
+        }
+      };
     let sortUp = [...data]
 
     //오름차순 정렬
@@ -37,19 +56,22 @@ const MusicChart = (props:any) => {
             a.title.label.localeCompare(b.title.label)
         )
         setData(sortUp)
+        setOnUpKeyClickPress(true)
+        setOnDownKeyClickPress(false)
     }
 
     //내림차순 정렬
     const descendingOrder = ()=> {
         sortUp.sort((a:any,b:any) => 
         b.title.label.localeCompare(a.title.label))
-        // console.log(data)
+
         setData(sortUp)
+        setOnUpKeyClickPress(false)
+        setOnDownKeyClickPress(true)
     }
 
     const goToDetail = () => {
         props.getMusicDetail(data);
-        // Navigate(`/Detail/${data.id.attributes["im:id"]}`);
     }
 
     
@@ -60,12 +82,13 @@ const MusicChart = (props:any) => {
                 <input
                     placeholder="찾으시는 음악 이름을 입력하세요"
                     onChange={searchMusic}
+                    onKeyPress={onKeyPressEnter}
                 />
                 <button onClick={submitSearch}>검색</button>
             </div>
             <div className="sort">
-                <button onClick={ascendingOrder}>오름차순</button>
-                <button onClick={descendingOrder}>내림차순</button>
+                <button style={onUpKeyClickPress ? {"backgroundColor":"#b2b8bb","color":"white"} : {"backgroundColor":"white"}} onClick={ascendingOrder}>오름차순</button>
+                <button style={onDownKeyClickPress ? {"backgroundColor":"#b2b8bb","color":"white"} : {"backgroundColor":"white"}} onClick={descendingOrder}>내림차순</button>
             </div>
             <div className="musics">
                 <div className="line"/>
@@ -91,7 +114,7 @@ const MusicChart = (props:any) => {
                                 </div>
                             </div>
                         </Link>
-                    <div className="line2"/>   
+                    <div className="line2"/>
                     </>
                     )
                 })}
