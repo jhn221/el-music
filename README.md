@@ -23,6 +23,8 @@
 
 ### `npm start`
 
-해당 파일을 clone 받은 후 npm install 작업을 통해서 프로젝트에 포함된 라이브러리를 설치하는 작업을 우선 진행해야 합니다.
-intall이 완료되었다면 npm start 명령어를 통해서 development mode안에서의 실제 구동 화면을 확인할 수 있습니다.
+해당 파일을 clone 받은 후 ```npm install``` 작업을 통해서 프로젝트에 포함된 라이브러리를 설치하는 작업을 우선 진행해야 합니다.
+
+intall이 완료되었다면 ```npm start``` 명령어를 통해서 development mode안에서의 실제 구동 화면을 확인할 수 있습니다.
+
 [http://localhost:3000](http://localhost:3000)
