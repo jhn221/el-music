@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.scss';
 import Detail from './Page/Detail/Detail';
 import MusicChart from './Page/Chart/MusicChart';
 import { Route, Routes } from 'react-router-dom';
-import axios from 'axios';
 
 function App() {
   const [data, setData] = useState<any[]>([]);
