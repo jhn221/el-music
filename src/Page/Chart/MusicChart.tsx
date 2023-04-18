@@ -12,11 +12,13 @@ const MusicChart = (props:any) => {
         .get ('https://itunes.apple.com/us/rss/topalbums/limit=100/json',)
         .then((res) => {
             setData(res.data.feed.entry)
+            // localStorage.setItem("DetailData", JSON.stringify(res.data.feed.entry))
         })
         .catch((err) => {
             console.log(err)
         })  
     },[])
+    console.log(data)
 
     // 검색
     const searchMusic = (e:any) => {
@@ -84,7 +86,7 @@ const MusicChart = (props:any) => {
                             <div onClick={goToDetail}>
                                 <div className="musicInfo">
                                     <div>{num+1}</div>
-                                    <img className="img" src={music["im:image"][0].label} alt=""></img>
+                                    <img className="img" src={music["im:image"][1].label} alt=""></img>
                                     <div className="name">{music.title.label}</div>
                                 </div>
                             </div>
